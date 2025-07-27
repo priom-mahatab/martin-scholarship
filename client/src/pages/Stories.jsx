@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Hand, Quote } from "lucide-react";
+import { Quote } from "lucide-react";
 import { Lightbulb, Handshake, Speech } from 'lucide-react';
 import axios from "axios";
 
@@ -46,18 +46,13 @@ const Stories = () => {
               className="border-0 shadow-lg hover:shadow-xl transition-shadow"
             >
               <CardContent className="p-8">
-                <div className="flex items-start gap-4 mb-6">
+                <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 bg-stone-200 rounded-full flex items-center justify-center flex-shrink-0">
                     <Quote className="w-6 h-6 text-stone-600" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-stone-800 mb-1">
+                    <h3 className="text-xl font-semibold text-stone-800">
                       {story.name}, {story.age}
                     </h3>
-                    <p className="text-stone-600 text-sm mb-3">
-                      {story.location}
-                    </p>
-                  </div>
                 </div>
 
                 <blockquote className="text-stone-700 italic text-lg leading-relaxed mb-6 pl-4 border-l-4 border-emerald-200">

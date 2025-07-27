@@ -96,7 +96,7 @@ const Credits = () => {
             <CardContent>
               <p className="text-stone-600 leading-relaxed">
                 I acknowledge the <strong>University of Portsmouth</strong> for conducting the
-                2018 baseline survey. Their research provided a critical
+                2019 baseline survey. Their research provided a critical
                 framework for designing the 2025 follow-up study and offered
                 essential data points for longitudinal comparison and analysis.
                 Their contribution continues to support a deeper understanding

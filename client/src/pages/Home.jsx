@@ -108,19 +108,19 @@ const Home = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Impact at a Glance</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-emerald-400 mb-2">250+</div>
-              <div className="text-stone-300">Families Interviewed</div>
+              <div className="text-3xl md:text-4xl font-bold text-emerald-400 mb-2">90</div>
+              <div className="text-stone-300">Households Surveyed</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">12</div>
+              <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">3</div>
               <div className="text-stone-300">Char Communities</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-amber-600 mb-2">85%</div>
+              <div className="text-3xl md:text-4xl font-bold text-amber-600 mb-2">100%</div>
               <div className="text-stone-300">Displacement Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-rose-600 mb-2">7</div>
+              <div className="text-3xl md:text-4xl font-bold text-rose-600 mb-2">2</div>
               <div className="text-stone-300">Months of Research</div>
             </div>
           </div>
