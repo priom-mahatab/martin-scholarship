@@ -18,17 +18,22 @@ router.get("/", async (req, res) => {
   try {
     const [displacementRes] = await db.execute("SELECT * FROM displacement");
     const [ownershipRes] = await db.execute("SELECT * FROM ownership");
-    const [religionRes] = await db.execute("SELECT * FROM religion");
+    // const [religionRes] = await db.execute("SELECT * FROM religion");
+    const [literacyRes] = await db.execute("SELECT * FROM education");
     const [roofRes] = await db.execute("SELECT * FROM roof");
     const [floorRes] = await db.execute("SELECT * FROM base");
     const [wallRes] = await db.execute("SELECT * FROM wall");
+    const [happinessRes] = await db.execute("SELECT * FROM happiness");
+    const [sufferingsRes] = await db.execute("SELECT * FROM sufferings");
     res.json({
       displacementRes,
       ownershipRes,
-      religionRes,
+      literacyRes,
       roofRes,
       floorRes,
-      wallRes
+      wallRes,
+      happinessRes,
+      sufferingsRes
     });
 
   } catch(err) {

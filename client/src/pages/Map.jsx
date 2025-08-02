@@ -2,7 +2,14 @@ import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, Users, Home, AlertTriangle } from "lucide-react";
-import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
+import {
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  ResponsiveContainer,
+} from "recharts";
 import { MapContainer, Popup, TileLayer, Marker } from "react-leaflet";
 import { Badge } from "@/components/ui/badge";
 import axios from "axios";
@@ -11,12 +18,15 @@ const MapView = () => {
   const [selectedCategory, setSelectedCategory] = useState("displacement");
   const [displacementData, setDisplacementData] = useState([]);
   const [ownershipData, setOwnershipData] = useState([]);
-  const [religionData, setReligionData] = useState([]);
+  const [literacyData, setLiteracyData] = useState([]);
+  // const [religionData, setReligionData] = useState([]);
   const [roofData, setRoofData] = useState([]);
   const [floorData, setFloorData] = useState([]);
   const [wallData, setWallData] = useState([]);
+  const [happinessData, setHappinessData] = useState([]);
+  const [struggleData, setStruggleData] = useState([]);
 
-  const jamunaCenter = [24.955, 89.568];
+  const jCenter = [24.955, 89.568];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,17 +35,21 @@ const MapView = () => {
         const {
           displacementRes,
           ownershipRes,
-          religionRes,
+          literacyRes,
           roofRes,
           floorRes,
           wallRes,
+          happinessRes,
+          sufferingsRes,
         } = res.data;
         setDisplacementData(displacementRes);
         setOwnershipData(ownershipRes);
-        setReligionData(religionRes);
+        setLiteracyData(literacyRes);
         setRoofData(roofRes);
         setFloorData(floorRes);
         setWallData(wallRes);
+        setHappinessData(happinessRes);
+        setStruggleData(sufferingsRes);
         console.log(res.data);
       } catch (err) {
         console.error("Failed to fetch regions:", err);
@@ -48,7 +62,9 @@ const MapView = () => {
   const categoryMap = {
     displacement: displacementData,
     ownership: ownershipData,
-    religion: religionData,
+    literacy: literacyData,
+    happiness: happinessData,
+    struggle: struggleData,
     roof: roofData,
     floor: floorData,
     wall: wallData,
@@ -57,7 +73,9 @@ const MapView = () => {
   const labelMap = {
     displacement: "category",
     ownership: "category",
-    religion: "religion",
+    literacy: "category",
+    happiness: "category",
+    struggle: "category",
     roof: "material",
     floor: "material",
     wall: "material",
@@ -90,7 +108,7 @@ const MapView = () => {
           </CardHeader>
           <CardContent className="h-full">
             <MapContainer
-              center={jamunaCenter}
+              center={jCenter}
               zoom={8}
               scrollWheelZoom={true}
               className="w-full h-full z-10 relative"
@@ -99,7 +117,7 @@ const MapView = () => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker position={jamunaCenter}>
+              <Marker position={jCenter}>
                 <Popup>Approx. center of the research region.</Popup>
               </Marker>
             </MapContainer>
@@ -145,16 +163,17 @@ const MapView = () => {
               or river erosion.
               <br></br>
               <br></br>
-              Displacement provides insights into where displaced individuals
-              previously lived. Ownership details the type of housing tenure
-              among residents. Religion indicates the religious affiliations of
-              the surveyed population. Lastly, Roof, Floor, and Wall categories
-              describe the materials used in housing construction, showing the
-              percentage of people using specific materials for each part of
-              their home.
+              The Displacement category reveals where individuals lived prior to
+              being displaced. Ownership outlines the types of housing tenure
+              among residents. Happiness responses have been grouped into five
+              calibrated categories. Struggle highlights which demographic
+              groups are most affected by frequent displacement. Finally, the
+              Roof, Floor, and Wall categories detail the materials used in home
+              construction, indicating the percentage of people using specific
+              materials for each part of their dwelling.
             </p>
           </CardHeader>
-          <CardContent className="flex flex-auto gap-3">
+          <CardContent className="flex flex-auto gap-12">
             {Object.keys(categoryMap).map((key) => (
               <button
                 key={key}
@@ -200,22 +219,23 @@ const MapView = () => {
               //   ))}
               // </ul>
               <ResponsiveContainer width="100%" height={300}>
-                <RadarChart 
+                <RadarChart
                   cx="50%"
                   cy="50%"
                   outerRadius="80%"
                   data={selectedData.map((item) => ({
                     label: item[labelMap[selectedCategory]],
-                    value: parseFloat(item.amount)
-                  }))}>
+                    value: parseFloat(item.amount),
+                  }))}
+                >
                   <PolarGrid />
                   <PolarAngleAxis dataKey="label" />
                   <PolarRadiusAxis angle={60} domain={[0, 60]} />
                   <Radar
                     name={selectedCategory}
                     dataKey="value"
-                    stroke="#8884d8"
-                    fill="#8884d8"
+                    stroke="#2563EB"
+                    fill="#2563EB"
                     fillOpacity={0.6}
                   />
                 </RadarChart>
@@ -234,27 +254,26 @@ const MapView = () => {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid gap-6">
               <div>
                 <h3 className="font-semibold text-stone-800 mb-3">
                   Spatial Distribution
                 </h3>
                 <p className="text-stone-600 text-sm leading-relaxed">
-                  The char regions are distributed in Shariakandi area along the
+                  In Sariakandi, one of the char regions in the Northern
+                  Districts of Bangladesh, the chars are distributed along the
                   Jamuna River, with higher impact areas concentrated in the
-                  northern and central sections. These areas experienced more
-                  severe flooding due to their proximity to major river bends
-                  and lower elevation. We have seen multiple villages merging
-                  with one another from 2018 to 2025. Some people have shifted
-                  more towards north and east due to closer access to mainland.
-                  <br />
-                  <br />A notable trend found through the research is that most
-                  people roam within the same piece of land or come from
-                  somewhere within the same district. 100% of the research
-                  subjects are followers of Islam. So, there is little to no
-                  cultural or religious diversity in these areas. However, this
-                  also helps everyone feel included and makes regional decisions
-                  easier.
+                  northern and central sections of the upazila. These areas
+                  experienced more severe flooding due to their proximity to
+                  major river bends and lower elevation. The research confirms
+                  that multiple villages merged between 2018 and 2025. Some
+                  people have shifted more towards the north and east due to
+                  closer access to the mainland. A notable trend found through
+                  the research is that most people roam within the same area or
+                  come from somewhere within the same district. There is
+                  insignificant cultural or religious diversity in these areas.
+                  However, this also helps everyone feel included and makes
+                  regional decisions easier.
                 </p>
               </div>
               <div>
@@ -264,20 +283,43 @@ const MapView = () => {
                 <p className="text-stone-600 text-sm leading-relaxed">
                   Recovery rates vary significantly by geographic location, with
                   chars closer to mainland infrastructure showing faster
-                  recovery. The current island where Koronjapara villagers
-                  merged in is very vulnerable to displacement as it has already
-                  started breaking off. NGOs like Char Livelihood Program (CLP)
-                  and BRAC have made efforts to give these people a source of
-                  income through livestock.
-                  <br />
-                  <br />
-                  The government has also supplied electricity and dish antenna
-                  to this char through rural electricity. However, only 4.4% of
-                  the housing were provided by the government. Four-fifths of the
-                  people have built their own houses using straws and tin. Education 
-                  and transportation remain the biggest challenges for the char-residents. 
-                  Every time they have to relocate, primary education is halted for months.
+                  recovery. The current island where the Koronjapara villagers
+                  merged is very vulnerable to displacement, as it is already
+                  starting to break apart. The Chars Livelihoods Programme
+                  (CLP), a project focused on improving the livelihoods of
+                  impoverished people living on island chars. NGOs like BRAC
+                  have made efforts to give these people a source of income
+                  through livestock. The government has also supplied
+                  electricity and a dish antenna to this char community. An
+                  insignificant proportion of the charter community (4.4%)
+                  received housing from the government. Four-fifths of the
+                  people have built their own houses using straws and tin.
+                  Education, digitalization, and transportation remain the
+                  biggest challenges for the char residents. Every time they
+                  have to relocate, primary education is halted for months.
+                </p>
+              </div>
 
+              <div>
+                <h3 className="font-semibold text-stone-800 mb-3">
+                  Spectrum of Struggle
+                </h3>
+                <p className="text-stone-600 text-sm leading-relaxed">
+                  The research findings reveal that suffering due to repeated
+                  displacement is not evenly distributed across demographic
+                  groups in the Jamuna River char regions. The radar chart
+                  highlights that adult women experience the highest levels of
+                  hardship, with over 40% reporting significant suffering in the
+                  latest survey conducted in 2025 by us. This trend aligns with
+                  broader regional patterns where women bear the brunt of
+                  disruptions caused by flooding and relocation. In contrast,
+                  children, older women, and young men report much lower
+                  suffering levels, averaging between 10% and 20%. Older men and
+                  young women fall somewhere in between, but still significantly
+                  below adult women. This suggests that adult women’s suffering
+                  is compounded by limited access to education, healthcare, and
+                  economic opportunities, especially during times of forced
+                  migration.
                 </p>
               </div>
             </div>

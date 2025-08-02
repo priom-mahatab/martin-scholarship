@@ -2,7 +2,7 @@ import Navigation from "@/components/Navigation";
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote } from "lucide-react";
-import { Lightbulb, Handshake, Speech } from 'lucide-react';
+import { Lightbulb, Handshake, Speech, HeartCrack } from "lucide-react";
 import axios from "axios";
 
 const Stories = () => {
@@ -11,18 +11,20 @@ const Stories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/stories`);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/stories`
+        );
         console.log("API URL:", import.meta.env.VITE_API_URL);
         setStories(res.data);
       } catch (err) {
-        console.error("Could not fetch stories", err); 
+        console.error("Could not fetch stories", err);
       }
     };
     fetchStories();
   }, []);
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="max-h-screen bg-stone-50">
       <Navigation />
 
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -33,7 +35,7 @@ const Stories = () => {
           </h1>
           <p className="text-lg text-stone-600 mb-6">
             Voices from the Jamuna char communities – stories of resilience,
-            recovery, and hope from those who experienced the 2018 floods and
+            problems, and hope from those who experienced the 2018 floods and
             their aftermath firsthand.
           </p>
         </div>
@@ -50,9 +52,9 @@ const Stories = () => {
                   <div className="w-12 h-12 bg-stone-200 rounded-full flex items-center justify-center flex-shrink-0">
                     <Quote className="w-6 h-6 text-stone-600" />
                   </div>
-                    <h3 className="text-xl font-semibold text-stone-800">
-                      {story.name}, {story.age}
-                    </h3>
+                  <h3 className="text-xl font-semibold text-stone-800">
+                    {story.name}, {story.age}
+                  </h3>
                 </div>
 
                 <blockquote className="text-stone-700 italic text-lg leading-relaxed mb-6 pl-4 border-l-4 border-emerald-200">
@@ -76,7 +78,7 @@ const Stories = () => {
               <div className="text-center">
                 <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <div className="text-2xl font-bold text-emerald-600">
-                    <Handshake className="w-8 h-8 text-emerald-600"/>
+                    <Handshake className="w-8 h-8 text-emerald-600" />
                   </div>
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-2">
@@ -90,24 +92,25 @@ const Stories = () => {
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <div className="text-2xl font-bold text-blue-600">
-                    <Speech className="w-8 h-8 text-blue-600"/>
+                <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="text-2xl font-bold text-red-600">
+                    <HeartCrack className="w-8 h-8 text-red-600" />
                   </div>
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-2">
-                  Women's Leadership
+                  Vulnerability
                 </h3>
                 <p className="text-stone-600 text-sm">
-                  Women emerged as key leaders in recovery efforts, organizing
-                  safety committees, cooperatives, and educational initiatives.
+                  Women are extremely vulnerable, especially during relocation.
+                  Despite some progress, their conditions remain very
+                  precarious.
                 </p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <div className="text-2xl font-bold text-amber-600">
-                    <Lightbulb className="w-8 h-8 text-amber-600"/>
+                    <Lightbulb className="w-8 h-8 text-amber-600" />
                   </div>
                 </div>
                 <h3 className="font-semibold text-stone-800 mb-2">
@@ -132,7 +135,7 @@ const Stories = () => {
             <p className="text-stone-600 text-sm leading-relaxed">
               These stories were collected through in-depth interviews and
               focus-group discussions conducted in July 2025 with community
-              members across char regions. All participants provided informed
+              members across char regions. All participants provided their
               consent while preserving the authentic voices and experiences of
               the Jamuna riverine communities. The stories represent diverse
               experiences of displacement, recovery, and resilience following

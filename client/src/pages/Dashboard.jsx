@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import {
   BarChart,
   Bar,
@@ -131,7 +132,7 @@ const Dashboard = () => {
         </p>
 
         {/* Key Metrics */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           <div className="bg-white p-6 rounded shadow">
             <div className="text-2xl font-bold text-emerald-600">90</div>
             <div className="text-sm text-stone-600">Households Surveyed</div>
@@ -152,7 +153,7 @@ const Dashboard = () => {
             <div className="text-2xl font-bold text-rose-600">25%</div>
             <div className="text-sm text-stone-600">Labor Growth</div>
           </div>
-        </div>
+        </div> */}
 
         {/* Charts Grid */}
         <div className="grid lg:grid-cols-2 gap-8 mb-8">
@@ -203,7 +204,7 @@ const Dashboard = () => {
                 />
                 <Bar
                   dataKey="Erosion displacement"
-                  stroke="ef4444"
+                  stroke="#059669"
                   fill="#059669"
                   opacity={0.6}
                   name="River Erosion"
@@ -221,16 +222,17 @@ const Dashboard = () => {
                 Violence Pattern
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">
-                The data shows significant decreases in almost all types of
-                reported violence from 2019 to 2025, which indicates progress in
-                safety and autonomy for char dwellers. In 2019, the most
-                reported forms of violence included male decision control,
-                verbal abuse, and pushing/shoving at 100.0%. By 2025, these
-                numbers fell sharply to 3.3%, 83.3%, and 37.8% respectively.
-                Similarly, the incidents of restricting contact, ignoring, and
-                beating dropped. However, sexual assault increased from 21.7% in
-                2019 to 37.8% in 2025, which is a concerning trend that may need
-                targeted intervention and support.
+                The research data reveals a promising trend in the reduction of
+                reported violence from 2019 to 2025, signaling a significant
+                improvement in safety and autonomy for char dwellers. In 2019,
+                the most prevalent forms of violence, including male decision
+                control, verbal abuse, and pushing/shoving, were reported at
+                100.0%. By 2025, these figures had plummeted to 3.3%, 83.3%, and
+                37.8% respectively. Similarly, incidents of restricting contact,
+                ignoring, and beating also decreased. However, the increase in
+                sexual assault from 21.7% in 2019 to 37.8% in 2025 is a
+                concerning trend that may require targeted intervention and
+                support.
               </p>
             </div>
             <div>
@@ -239,13 +241,15 @@ const Dashboard = () => {
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">
                 Recovery patterns show significant improvement over the 6-year
-                study period. However, the amount of times the char dwellers
-                have had to displace has gone up overall. In 2019, the
+                study period. However, the number of times the char dwellers
+                have had to be displaced has gone up overall. In 2019, the
                 respondents reported that they had to displace more frequently
-                due to river erosions (3.72) than floods (1.56). In 2025, we
-                found out an enormous bump in the frequency of displacement due
-                to flood (3.77). Due to the most recent flood, the entirety of
-                Karanjapara village had to relocate and merge with Nayapara.
+                due to river erosion (3.72 times every 5 years) than floods
+                (1.56 times every 5 years). In 2025, research shows an enormous
+                bump in the frequency of displacement due to flood (3.77 times
+                every 5 years). Due to the most recent flood, the entirety of
+                Karanjapara village had to relocate and merge with Nayapara. The
+                values of 2025 show the frequencies after the baseline survey.
               </p>
             </div>
           </div>
@@ -349,12 +353,13 @@ const Dashboard = () => {
             <div>
               <h3 className="font-semibold text-stone-800 mb-3">Income</h3>
               <p className="text-stone-600 text-sm leading-relaxed">
-                Income engagement over time reveals a significant change from
-                economic dependency to income-generating participation. In 2019,
-                only about 38% of respondents participated in income activities,
-                while around 62% reported having no income. By 2025, this
-                changed dramatically: approximately 73% were now engaged in
-                income.
+                The change in income engagement over time is a significant
+                indicator of economic progress among char dwellers. In 2019,
+                only about 38% of respondents were engaged in income activities,
+                while around 62% reported having no income. By 2025, this had
+                dramatically shifted, with approximately 73% reporting
+                income-generating participation, marking a positive change in
+                their economic status.
               </p>
             </div>
             <div>
@@ -362,30 +367,106 @@ const Dashboard = () => {
                 Influence in Decision-Making
               </h3>
               <p className="text-stone-600 text-sm leading-relaxed">
-                We found a clear shift in agency within households. In 2019,
-                almost 50% of respondents said they had no influence in
+                The research found a clear shift in agency within households. In
+                2019, almost 50% of respondents said they did not influence
                 decision-making, while only about 15% reported having equal
                 influence. By 2025, the number of respondents with no influence
-                dropped to 0%, and those with equal influence increased
-                significantly to roughly 44%.
+                had dropped to 0%, and those with equal influence had
+                significantly increased to roughly 44%, a positive sign of
+                empowerment.
               </p>
             </div>
           </div>
         </div>
+
+        <Card className="bg-white rounded shadow mt-8">
+          <CardHeader>
+            <CardTitle>
+              <h2 className="text-2xl font-semibold text-stone-800">
+                Results Interpretation
+              </h2>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-6">
+              <div>
+                <h3 className="font-semibold text-stone-800 mb-3">
+                  Do they Match with Reality?
+                </h3>
+                <p className="text-stone-600 text-sm leading-relaxed">
+                  The numbers suggest progress, but do they truly reflect
+                  reality? While the data indicates a significant drop in
+                  domestic violence, it must be interpreted with caution. Many
+                  respondents may have underreported their experiences due to
+                  recency bias. At the time of the survey, most families were
+                  not actively relocating, and household tensions were
+                  relatively low. This temporary calm may have influenced their
+                  responses. Notably, reports of sexual violence have increased
+                  by nearly 16%, contradicting the narrative of overall
+                  improvement. Similarly, while data shows a rise in women&#39;s
+                  influence in household decision-making compared to 2019,
+                  qualitative interviews paint a different picture. Male
+                  respondents consistently affirmed that they still hold final
+                  authority, and although women now feel more comfortable
+                  sharing opinions, they rarely challenge the head of the
+                  family. The female head representative noted that women tend
+                  to nod along with each other during discussions. This suggests
+                  a lack of confidence rather than genuine agency. These
+                  contradictions raise a complex but essential question: are
+                  women truly breaking free from the cycle of abuse, or are we
+                  mistaking silence for safety? To address this, there is a need
+                  for gender-sensitive policies and interventions that can
+                  empower women and promote gender equality.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-stone-800 mb-3">
+                  Cycle of Poverty & Illiteracy
+                </h3>
+                <p className="text-stone-600 text-sm leading-relaxed">
+                  More females are now engaged in income, primarily through
+                  farming. However, they are still paid below minimum wage.
+                  Since their husbands easily influence them, most of that
+                  income ends up in the males&#39; pockets. More income also
+                  does not correlate with financial stability. Most of the funds
+                  are spent during relocation periods. Continuous displacement
+                  and transportation easily drain out their income. To make
+                  things worse, 51% of the respondents never attended school,
+                  and 54.7% of them cannot read or write. The impact of
+                  continuous displacements on education is alarming, with
+                  schools being destroyed during floods and classes being paused
+                  for months. Yet, residents prefer staying here because of the
+                  low cost of housing and easier access to agriculture. This has
+                  kept them within a vicious cycle of poverty.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-stone-800 mb-3">Thoughts</h3>
+                <p className="text-stone-600 text-sm leading-relaxed">
+                  Women are highly vulnerable to increased levels of IPV
+                  (Intimate Partner Violence) post-displacement despite reported
+                  data showing otherwise. There have been interventions to
+                  address extreme cases of poverty in these lands, but the need
+                  for more effective solutions is pressing. However, significant
+                  progress is yet to be seen. All of the emergency funds and
+                  progressive projects from organizations like USAID, DFID, and
+                  BRAC are turned to ash when there is erosion or flooding.
+                  That&#39;s why poverty is being passed on from generation to
+                  generation. When communities like these are excluded from the
+                  digital world, their needs remain invisible, their voices
+                  unheard, and their futures limited. Equal access to technology
+                  isn&#39;t just about having devices or Wi-Fi; it&#39;s about
+                  ensuring that even the most displaced lives are counted in the
+                  systems that shape policy, funding, and innovation.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
 export default Dashboard;
-
-{
-  /* violence incidents over time
-  income trend of females over time
-  decision making trend of females over time
-  pie chart to show contribution of females on family income
-  violence trends
-
-  one village has been fully eroded. Migrated from Karanjapara to Nayapara 
-   */
-}
