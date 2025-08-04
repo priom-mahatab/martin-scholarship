@@ -53,3 +53,10 @@ This site was built to:
     nodemon index.mjs
     ```
 
+### Preview of the website
+
+-![Homepage Preview](images/home.png)
+-![Dashboard Preview](images/dashboard.png)
+-![Map Preview](images/map.png)
+
+
